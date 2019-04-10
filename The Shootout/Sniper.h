@@ -5,8 +5,10 @@
 class Sniper : public IAgent
 {
 public:
-	Sniper();
+	Sniper(string, int);
 	~Sniper();
 
-	void TakeDamage();
+	void TakeDamage(int);
+	void Heal(int);
+	int Attack();
 };
