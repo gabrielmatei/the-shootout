@@ -12,7 +12,7 @@ GameManager::~GameManager()
 void GameManager::Init()
 {
 	_round = 0;
-	_map.Init();
+	_map.Init(&_agents);
 }
 
 void GameManager::Loop()
@@ -20,7 +20,7 @@ void GameManager::Loop()
 	while (true)
 	{
 		Update();
-		//RemoveDeadAgents();
+		RemoveDeadAgents();
 		sleep_for(seconds(2));
 	}
 }

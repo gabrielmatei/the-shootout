@@ -11,6 +11,16 @@ int IAgent::GetHealth()
 	return _health;
 }
 
+pair<int, int> IAgent::GetPosition()
+{
+	return _position;
+}
+
+int IAgent::GetRange()
+{
+	return _range;
+}
+
 bool IAgent::IsDead()
 {
 	return _health <= 0;

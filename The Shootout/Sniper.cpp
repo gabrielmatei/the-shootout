@@ -1,10 +1,12 @@
 #include "pch.h"
 #include "Sniper.h"
 
-Sniper::Sniper(string name, int maxHealth)
+Sniper::Sniper(string name, pair<int, int> position)
 {
 	_name = name;
-	_health = _maxHealth = maxHealth;
+	_position = position;
+	_health = MAX_HEALTH;
+	_range = MAX_RANGE;
 }
 
 Sniper::~Sniper()

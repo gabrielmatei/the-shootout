@@ -9,10 +9,13 @@ protected:
 	string _name;
 	int _maxHealth;
 	int _health;
-	int _visibility;
+	int _range;
+	pair<int, int> _position;
 public:
 	string GetName();
 	int GetHealth();
+	pair<int, int> GetPosition();
+	int GetRange();
 
 	bool IsDead();
 

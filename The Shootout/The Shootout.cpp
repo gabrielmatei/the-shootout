@@ -7,12 +7,11 @@ int main()
 {
 	GameManager gameManager;
 
-	gameManager.Init();
-
-	Sniper s1("A", 100);
-	Sniper s2("B", 120);
+	Sniper s1("A", { 3, 4 });
+	Sniper s2("B", { 11, 17 });
 	gameManager.AddAgent(&s1);
 	gameManager.AddAgent(&s2);
 
+	gameManager.Init();
 	gameManager.Loop();
 }
