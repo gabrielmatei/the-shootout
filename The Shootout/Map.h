@@ -10,8 +10,8 @@ using namespace std;
 class Map
 {
 private:
-	const unsigned int _width = 25;
-	const unsigned int _height = 25;
+	static const unsigned int _width = 25;
+	static const unsigned int _height = 25;
 
 	vector<vector<char>> _map;
 
@@ -34,6 +34,6 @@ public:
 	void Show();
 	void Clear();
 
-	int GetDistance(pair<int, int>, pair<int, int>);
-	bool IsInside(pair<int, int>);
+	static int GetDistance(pair<int, int>, pair<int, int>);
+	static bool IsInside(pair<int, int>);
 };

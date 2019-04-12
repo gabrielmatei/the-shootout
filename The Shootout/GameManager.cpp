@@ -20,8 +20,7 @@ void GameManager::Loop()
 	while (true)
 	{
 		Update();
-		RemoveDeadAgents();
-		sleep_for(seconds(2));
+		sleep_for(milliseconds(300));
 	}
 }
 
@@ -29,8 +28,18 @@ void GameManager::Update()
 {
 	_round++;
 
-	_agents[0]->TakeDamage(10);
+	for (int i = 0; i < _agents.size(); i++)
+	{
+		vector<IAgent*> targets;
+		for (int j = 0; j < i; j++)
+			targets.push_back(_agents[j]);
+		for (int j = i + 1; j < _agents.size(); j++)
+			targets.push_back(_agents[j]);
 
+		_agents[i]->Play(targets);
+	}
+
+	RemoveDeadAgents();
 	Display();
 }
 
@@ -40,9 +49,9 @@ void GameManager::Display()
 
 	cout << "Round " << _round << "\n\n";
 
-	for (int i = 0; i < _agents.size(); i++)
+	for (auto agent : _agents)
 	{
-		cout << "Agent " << _agents[i]->GetName() << ": " << _agents[i]->GetHealth() << "\n";
+		cout << "Agent " << agent->GetName() << ": " << agent->GetHealth() << "\n";
 	}
 
 	_map.Show();

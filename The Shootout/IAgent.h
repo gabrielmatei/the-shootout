@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 using namespace std;
 
 class IAgent
@@ -10,6 +11,8 @@ protected:
 	int _maxHealth;
 	int _health;
 	int _range;
+	int _speed;
+	int _damage;
 	pair<int, int> _position;
 public:
 	string GetName();
@@ -20,6 +23,7 @@ public:
 	bool IsDead();
 
 	virtual void TakeDamage(int) = 0;
-	virtual void Heal(int) = 0;
-	virtual int Attack() = 0;
+	virtual void Attack(IAgent*) = 0;
+	virtual void Move(int) = 0;
+	virtual void Play(vector<IAgent*>) = 0;
 };

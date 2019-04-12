@@ -7,8 +7,8 @@ int main()
 {
 	GameManager gameManager;
 
-	Sniper s1("A", { 3, 4 });
-	Sniper s2("B", { 11, 17 });
+	Sniper s1("A", 13, { 3, 4 });
+	Sniper s2("B", 19, { 11, 17 });
 	gameManager.AddAgent(&s1);
 	gameManager.AddAgent(&s2);
 
