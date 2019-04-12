@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include "Direction.h"
 using namespace std;
 
 class IAgent
@@ -24,6 +25,6 @@ public:
 
 	virtual void TakeDamage(int) = 0;
 	virtual void Attack(IAgent*) = 0;
-	virtual void Move(int) = 0;
+	virtual void Move(Direction) = 0;
 	virtual void Play(vector<IAgent*>) = 0;
 };

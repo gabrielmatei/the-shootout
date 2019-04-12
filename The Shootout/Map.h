@@ -4,14 +4,15 @@
 #include <iomanip>
 #include <vector>
 #include <math.h>
+#include "Direction.h"
 #include "IAgent.h"
 using namespace std;
 
 class Map
 {
 private:
-	static const unsigned int _width = 25;
-	static const unsigned int _height = 25;
+	static const unsigned int _width = 100;
+	static const unsigned int _height = 40;
 
 	vector<vector<char>> _map;
 
@@ -35,5 +36,6 @@ public:
 	void Clear();
 
 	static int GetDistance(pair<int, int>, pair<int, int>);
+	static Direction GetDirection(pair<int, int>, pair<int, int>);
 	static bool IsInside(pair<int, int>);
 };

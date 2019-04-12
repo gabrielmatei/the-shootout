@@ -55,7 +55,7 @@ void Map::AddRange(pair<int, int> currentPosition, IAgent* agent)
 		if (GetDistance(currentPosition, agent->GetPosition()) > agent->GetRange())
 			return;
 
-		if (_map[currentPosition.first][currentPosition.second] != AGENT_TILE)
+		if (_map[currentPosition.first][currentPosition.second] == LAND_TILE)
 			_map[currentPosition.first][currentPosition.second] = RANGE_TILE;
 	}
 
@@ -75,6 +75,18 @@ void Map::Clear()
 int Map::GetDistance(pair<int, int> a, pair<int, int> b)
 {
 	return sqrt(pow((a.first - b.first), 2) + pow((a.second - b.second), 2));
+}
+
+Direction Map::GetDirection(pair<int, int> a, pair<int, int> b)
+{
+	if (a.first > b.first)
+		return Direction::Up;
+	else if (a.first < b.first)
+		return Direction::Down;
+	else if (a.second > b.second)
+		return Direction::Left;
+	else
+		return Direction::Right;
 }
 
 bool Map::IsInside(pair<int, int> position)

@@ -7,7 +7,7 @@ Sniper::Sniper(string name, int damage, pair<int, int> position)
 	_position = position;
 	_health = MAX_HEALTH;
 	_range = MAX_RANGE;
-	_speed = 4;
+	_speed = 1;
 	_damage = damage;
 }
 
@@ -27,25 +27,25 @@ void Sniper::Attack(IAgent *target)
 	target->TakeDamage(_damage);
 }
 
-void Sniper::Move(int direction)
+void Sniper::Move(Direction direction)
 {
 	switch (direction)
 	{
-	case 1:
+	case Direction::Up:
 		if (Map::IsInside(pair<int, int>(_position.first - _speed, _position.second)))
-			_position.first -= _speed; // up
+			_position.first -= _speed;
 		break;
-	case 2:
+	case Direction::Down:
 		if (Map::IsInside(pair<int, int>(_position.first + _speed, _position.second)))
-			_position.first += _speed; // down
+			_position.first += _speed;
 		break;
-	case 3:
+	case Direction::Left:
 		if (Map::IsInside(pair<int, int>(_position.first, _position.second - _speed)))
-			_position.second -= _speed; // left
+			_position.second -= _speed;
 		break;
-	case 4:
+	case Direction::Right:
 		if (Map::IsInside(pair<int, int>(_position.first, _position.second + _speed)))
-			_position.second += _speed; // right
+			_position.second += _speed;
 		break;
 	}
 }
@@ -55,13 +55,28 @@ void Sniper::Play(vector<IAgent*> targets)
 	if (IsDead())
 		return;
 
+	IAgent* bestTarget = NULL;
+	int bestDistance = 999999;
 	for (auto target : targets)
 	{
 		int distance = Map::GetDistance(_position, target->GetPosition());
-		if (distance <= _range)
-			Attack(target);
-		else
-			Move(rand() % 4 + 1);
+		if (distance < bestDistance)
+		{
+			bestTarget = target;
+			bestDistance = distance;
+		}
 	}
 
+	if (bestTarget != NULL)
+	{
+		if (bestDistance <= _range)
+		{
+			Attack(bestTarget);
+		}
+		else
+		{
+			Direction direction = Map::GetDirection(_position, bestTarget->GetPosition());
+			Move(direction);
+		}
+	}
 }

@@ -36,6 +36,9 @@
     <ClInclude Include="Sniper.h">
       <Filter>Header Files\Agents</Filter>
     </ClInclude>
+    <ClInclude Include="Direction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
