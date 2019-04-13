@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Direction.h"
+#include "AgentStats.h"
 using namespace std;
 
 class IAgent
@@ -21,6 +22,7 @@ public:
 	int GetArmor();
 	pair<int, int> GetPosition();
 	int GetRange();
+	AgentStats GetStats();
 
 	bool IsDead();
 

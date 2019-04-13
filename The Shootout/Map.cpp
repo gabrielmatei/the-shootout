@@ -29,7 +29,7 @@ void Map::Show()
 	for (int i = 0; i < _height; i++)
 	{
 		for (int j = 0; j < _width; j++)
-			cout << _map[i][j] << std::setw(2);
+			cout << _map[i][j];
 		cout << "\n";
 	}
 }

@@ -26,6 +26,18 @@ int IAgent::GetRange()
 	return _range;
 }
 
+AgentStats IAgent::GetStats()
+{
+	return {
+		_name,
+		_damage,
+		_speed,
+		_range,
+		_health,
+		_armor
+	};
+}
+
 bool IAgent::IsDead()
 {
 	return _health <= 0;

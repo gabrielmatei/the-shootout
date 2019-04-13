@@ -51,11 +51,23 @@ void GameManager::Display()
 
 	for (auto agent : _agents)
 	{
-		cout << "Agent " << agent->GetName() << ": " << agent->GetHealth() << " " << agent->GetArmor() << "\n";
+		ShowAgentStats(agent->GetStats());
 	}
 
 	_map.Show();
 
+	cout << "\n\n";
+}
+
+void GameManager::ShowAgentStats(AgentStats stats)
+{
+	cout << left;
+	cout << "NAME: " << setw(8) << stats.Name << " - ";
+	cout << "H: " << setw(4) << stats.Health << " ";
+	cout << "A: " << setw(4) << stats.Armor << " ";
+	cout << "D: " << setw(3) << stats.Damage << " ";
+	cout << "S: " << setw(2) << stats.Speed << " ";
+	cout << "R: " << setw(2) << stats.Range << " ";
 	cout << "\n\n";
 }
 

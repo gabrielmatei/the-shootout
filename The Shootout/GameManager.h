@@ -4,6 +4,7 @@
 #include <thread>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
 #include "Map.h"
 #include "IAgent.h"
 using namespace std::this_thread;
@@ -19,6 +20,7 @@ private:
 
 	void Update();
 	void Display();
+	void ShowAgentStats(AgentStats);
 	void RemoveDeadAgents();
 public:
 	GameManager();

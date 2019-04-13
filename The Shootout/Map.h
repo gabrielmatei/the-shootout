@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <iomanip>
 #include <vector>
 #include <math.h>
 #include "Direction.h"
@@ -16,9 +15,9 @@ private:
 
 	vector<vector<char>> _map;
 
-	const char LAND_TILE = '-';
-	const char AGENT_TILE = '@';
-	const char RANGE_TILE = '=';
+	const char LAND_TILE = 176;
+	const char AGENT_TILE = 178;
+	const char RANGE_TILE = 177;
 
 	vector<IAgent*>* _agents;
 

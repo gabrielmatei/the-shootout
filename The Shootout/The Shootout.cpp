@@ -7,14 +7,18 @@ int main()
 {
 	GameManager gameManager;
 
-	Sniper s1("A", 7, 30, { 3, 4 });
-	Sniper s2("B", 9, 100, { 11, 17 });
-	Sniper s3("C", 6, 40, { 38, 60 });
-	Sniper s4("D", 8, 50, { 30, 80 });
+	Sniper s1("Marcus", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
+	Sniper s2("Leon ", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
+	Sniper s3("Sam", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
+	Sniper s4("Max", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
+	Sniper s5("Kane", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
+	Sniper s6("Garrett", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
 	gameManager.AddAgent(&s1);
 	gameManager.AddAgent(&s2);
 	gameManager.AddAgent(&s3);
 	gameManager.AddAgent(&s4);
+	gameManager.AddAgent(&s5);
+	gameManager.AddAgent(&s6);
 
 	gameManager.Init();
 	gameManager.Loop();
