@@ -30,4 +30,5 @@ public:
 	void Loop();
 
 	void AddAgent(IAgent*);
+	void AddAgents(vector<IAgent*>);
 };

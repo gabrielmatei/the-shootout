@@ -76,6 +76,12 @@ void GameManager::AddAgent(IAgent* agent)
 	_agents.push_back(agent);
 }
 
+void GameManager::AddAgents(vector<IAgent*> agents)
+{
+	for (auto agent : agents)
+		AddAgent(agent);
+}
+
 void GameManager::RemoveDeadAgents()
 {
 	_agents.erase(

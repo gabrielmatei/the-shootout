@@ -1,10 +1,14 @@
 #include "pch.h"
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 #include "GameManager.h"
 #include "Sniper.h"
 
 int main()
 {
+	srand(time(NULL));
+
 	GameManager gameManager;
 
 	Sniper s1("Marcus", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
@@ -13,12 +17,9 @@ int main()
 	Sniper s4("Max", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
 	Sniper s5("Kane", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
 	Sniper s6("Garrett", rand() % 10 + 1, rand() % 50 + 1, { rand() % 40, rand() % 100 });
-	gameManager.AddAgent(&s1);
-	gameManager.AddAgent(&s2);
-	gameManager.AddAgent(&s3);
-	gameManager.AddAgent(&s4);
-	gameManager.AddAgent(&s5);
-	gameManager.AddAgent(&s6);
+
+	vector<IAgent*> agents{ &s1, &s2, &s3, &s4, &s5, &s6 };
+	gameManager.AddAgents(agents);
 
 	gameManager.Init();
 	gameManager.Loop();
