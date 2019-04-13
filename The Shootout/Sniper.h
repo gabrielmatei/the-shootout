@@ -9,7 +9,7 @@ private:
 	const int MAX_HEALTH = 100;
 	const int MAX_RANGE = 4;
 public:
-	Sniper(string, int, pair<int, int>);
+	Sniper(string, int, int, pair<int, int>);
 	~Sniper();
 
 	void TakeDamage(int);

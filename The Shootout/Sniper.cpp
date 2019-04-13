@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Sniper.h"
 
-Sniper::Sniper(string name, int damage, pair<int, int> position)
+Sniper::Sniper(string name, int damage, int armor, pair<int, int> position)
 {
 	_name = name;
 	_position = position;
@@ -9,6 +9,7 @@ Sniper::Sniper(string name, int damage, pair<int, int> position)
 	_range = MAX_RANGE;
 	_speed = 1;
 	_damage = damage;
+	_armor = armor;
 }
 
 Sniper::~Sniper()
@@ -17,6 +18,17 @@ Sniper::~Sniper()
 
 void Sniper::TakeDamage(int amount)
 {
+	if (_armor >= amount)
+	{
+		_armor -= amount;
+		return;
+	}
+	else if (_armor != 0)
+	{
+		amount -= _armor;
+		_armor = 0;
+	}
+
 	_health -= amount;
 	if (_health < 0)
 		_health = 0;
@@ -60,7 +72,7 @@ void Sniper::Play(vector<IAgent*> targets)
 	for (auto target : targets)
 	{
 		int distance = Map::GetDistance(_position, target->GetPosition());
-		if (distance < bestDistance)
+		if (distance < bestDistance || (distance == bestDistance && target->GetHealth() < bestTarget->GetHealth()))
 		{
 			bestTarget = target;
 			bestDistance = distance;

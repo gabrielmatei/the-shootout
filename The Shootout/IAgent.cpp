@@ -11,6 +11,11 @@ int IAgent::GetHealth()
 	return _health;
 }
 
+int IAgent::GetArmor()
+{
+	return _armor;
+}
+
 pair<int, int> IAgent::GetPosition()
 {
 	return _position;

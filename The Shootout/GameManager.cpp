@@ -51,7 +51,7 @@ void GameManager::Display()
 
 	for (auto agent : _agents)
 	{
-		cout << "Agent " << agent->GetName() << ": " << agent->GetHealth() << "\n";
+		cout << "Agent " << agent->GetName() << ": " << agent->GetHealth() << " " << agent->GetArmor() << "\n";
 	}
 
 	_map.Show();

@@ -9,15 +9,16 @@ class IAgent
 {
 protected:
 	string _name;
-	int _maxHealth;
 	int _health;
 	int _range;
 	int _speed;
 	int _damage;
+	int _armor;
 	pair<int, int> _position;
 public:
 	string GetName();
 	int GetHealth();
+	int GetArmor();
 	pair<int, int> GetPosition();
 	int GetRange();
 
