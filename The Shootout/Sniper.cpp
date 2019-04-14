@@ -39,26 +39,27 @@ void Sniper::Attack(IAgent *target)
 	target->TakeDamage(_damage);
 }
 
-void Sniper::Move(Direction direction)
+void Sniper::Move(int direction)
 {
-	switch (direction)
+	if (direction & Direction::Up)
 	{
-	case Direction::Up:
 		if (Map::IsInside(pair<int, int>(_position.first - _speed, _position.second)))
 			_position.first -= _speed;
-		break;
-	case Direction::Down:
+	}
+	if (direction & Direction::Down)
+	{
 		if (Map::IsInside(pair<int, int>(_position.first + _speed, _position.second)))
 			_position.first += _speed;
-		break;
-	case Direction::Left:
+	}
+	if (direction & Direction::Left)
+	{
 		if (Map::IsInside(pair<int, int>(_position.first, _position.second - _speed)))
 			_position.second -= _speed;
-		break;
-	case Direction::Right:
+	}
+	if (direction & Direction::Right)
+	{
 		if (Map::IsInside(pair<int, int>(_position.first, _position.second + _speed)))
 			_position.second += _speed;
-		break;
 	}
 }
 
@@ -87,7 +88,7 @@ void Sniper::Play(vector<IAgent*> targets)
 		}
 		else
 		{
-			Direction direction = Map::GetDirection(_position, bestTarget->GetPosition());
+			int direction = Map::GetDirection(_position, bestTarget->GetPosition());
 			Move(direction);
 		}
 	}

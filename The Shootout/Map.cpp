@@ -77,16 +77,20 @@ int Map::GetDistance(pair<int, int> a, pair<int, int> b)
 	return sqrt(pow((a.first - b.first), 2) + pow((a.second - b.second), 2));
 }
 
-Direction Map::GetDirection(pair<int, int> a, pair<int, int> b)
+int Map::GetDirection(pair<int, int> a, pair<int, int> b)
 {
+	int direction = 0;
+
 	if (a.first > b.first)
-		return Direction::Up;
-	else if (a.first < b.first)
-		return Direction::Down;
-	else if (a.second > b.second)
-		return Direction::Left;
-	else
-		return Direction::Right;
+		direction |= Direction::Up;
+	if (a.first < b.first)
+		direction |= Direction::Down;
+	if (a.second > b.second)
+		direction |= Direction::Left;
+	if (a.second < b.second)
+		direction |= Direction::Right;
+
+	return direction;
 }
 
 bool Map::IsInside(pair<int, int> position)

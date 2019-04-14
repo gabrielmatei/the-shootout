@@ -14,6 +14,6 @@ public:
 
 	void TakeDamage(int);
 	void Attack(IAgent*);
-	void Move(Direction);
+	void Move(int);
 	void Play(vector<IAgent*>);
 };

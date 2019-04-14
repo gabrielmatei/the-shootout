@@ -35,6 +35,6 @@ public:
 	void Clear();
 
 	static int GetDistance(pair<int, int>, pair<int, int>);
-	static Direction GetDirection(pair<int, int>, pair<int, int>);
+	static int GetDirection(pair<int, int>, pair<int, int>);
 	static bool IsInside(pair<int, int>);
 };
