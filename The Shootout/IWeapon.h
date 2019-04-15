@@ -5,9 +5,11 @@ using namespace std;
 class IWeapon
 {
 protected:
-	string _name;
 	int _damage;
+	int _criticalStrike;
 public:
-	string GetName();
 	int GetDamage();
+	int GetCriticalStrike();
+
+	virtual int Shoot() = 0;
 };

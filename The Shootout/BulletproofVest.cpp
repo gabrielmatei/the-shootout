@@ -1,12 +1,16 @@
 #include "pch.h"
 #include "BulletproofVest.h"
 
-BulletproofVest::BulletproofVest(string name, int armor)
+BulletproofVest::BulletproofVest()
 {
-	_name = name;
-	_armor = armor;
+
 }
 
 BulletproofVest::~BulletproofVest()
 {
+}
+
+int BulletproofVest::Defend()
+{
+	return 0;
 }

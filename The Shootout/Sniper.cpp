@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "Sniper.h"
 
-Sniper::Sniper(string name, IWeapon weapon, IArmor armor, pair<int, int> position)
+Sniper::Sniper(string name, IWeapon* weapon, IArmor* armor, pair<int, int> position)
 {
 	_name = name;
 	_position = position;
 	_health = MAX_HEALTH;
 	_range = MAX_RANGE;
 	_speed = 1;
-	_damage = weapon.GetDamage();
-	_armor = armor.GetArmor();
+	//_damage = weapon.GetDamage();
+	//_armor = armor.GetArmor();
 }
 
 Sniper::~Sniper()

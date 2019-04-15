@@ -6,9 +6,15 @@ using namespace std;
 class IArmor
 {
 protected:
-	string _name;
 	int _armor;
+	int _bonusHealth;
+	int _bonusSpeed;
+	int _bonusRange;
 public:
-	string GetName();
 	int GetArmor();
+	int GetBonusHealth();
+	int GetBonusSpeed();
+	int GetBonusRange();
+
+	virtual int Defend() = 0;
 };

@@ -15,9 +15,9 @@ private:
 
 	vector<vector<char>> _map;
 
-	const char LAND_TILE = 176;
-	const char AGENT_TILE = 178;
-	const char RANGE_TILE = 177;
+	const char LAND_TILE = (char)176;
+	const char AGENT_TILE = (char)178;
+	const char RANGE_TILE = (char)177;
 
 	vector<IAgent*>* _agents;
 

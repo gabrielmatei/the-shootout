@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "M21Rifle.h"
 
-M21Rifle::M21Rifle(string name, int damage)
+M21Rifle::M21Rifle()
 {
-	_name = name;
-	_damage = damage;
 }
 
 M21Rifle::~M21Rifle()
 {
+}
+
+int M21Rifle::Shoot()
+{
+	return 0;
 }

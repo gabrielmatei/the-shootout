@@ -1,12 +1,22 @@
 #include "pch.h"
 #include "IArmor.h"
 
-string IArmor::GetName()
-{
-	return _name;
-}
-
 int IArmor::GetArmor()
 {
 	return _armor;
+}
+
+int IArmor::GetBonusHealth()
+{
+	return _bonusHealth;
+}
+
+int IArmor::GetBonusSpeed()
+{
+	return _bonusSpeed;
+}
+
+int IArmor::GetBonusRange()
+{
+	return _bonusRange;
 }

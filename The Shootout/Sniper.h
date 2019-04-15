@@ -11,7 +11,7 @@ private:
 	const int MAX_HEALTH = 100;
 	const int MAX_RANGE = 4;
 public:
-	Sniper(string, IWeapon, IArmor, pair<int, int>);
+	Sniper(string, IWeapon*, IArmor*, pair<int, int>);
 	~Sniper();
 
 	void TakeDamage(int);
