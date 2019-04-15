@@ -10,3 +10,8 @@ int IWeapon::GetCriticalStrike()
 {
 	return _criticalStrike;
 }
+
+int IWeapon::GetBonusRange()
+{
+	return _bonusRange;
+}

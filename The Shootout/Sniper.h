@@ -1,9 +1,7 @@
 #pragma once
 
 #include "IAgent.h"
-#include "IWeapon.h"
-#include "IArmor.h"
-#include "MAp.h"
+#include "Map.h"
 
 class Sniper : public IAgent
 {

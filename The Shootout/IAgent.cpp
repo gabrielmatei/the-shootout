@@ -11,7 +11,12 @@ int IAgent::GetHealth()
 	return _health;
 }
 
-int IAgent::GetArmor()
+IWeapon* IAgent::GetWeapon()
+{
+	return _weapon;
+}
+
+IArmor* IAgent::GetArmor()
 {
 	return _armor;
 }
@@ -23,7 +28,7 @@ pair<int, int> IAgent::GetPosition()
 
 int IAgent::GetRange()
 {
-	return _range;
+	return _range + _weapon->GetBonusRange();
 }
 
 AgentStats IAgent::GetStats()
@@ -34,7 +39,7 @@ AgentStats IAgent::GetStats()
 		_speed,
 		_range,
 		_health,
-		_armor
+		0
 	};
 }
 

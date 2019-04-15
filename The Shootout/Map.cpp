@@ -74,7 +74,7 @@ void Map::Clear()
 
 int Map::GetDistance(pair<int, int> a, pair<int, int> b)
 {
-	return sqrt(pow((a.first - b.first), 2) + pow((a.second - b.second), 2));
+	return (int)sqrt(pow((a.first - b.first), 2) + pow((a.second - b.second), 2));
 }
 
 int Map::GetDirection(pair<int, int> a, pair<int, int> b)

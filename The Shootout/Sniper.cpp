@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "Sniper.h"
 
-Sniper::Sniper(string name, IWeapon* weapon, IArmor* armor, pair<int, int> position)
+Sniper::Sniper(string name, IWeapon *weapon, IArmor *armor, pair<int, int> position)
 {
 	_name = name;
 	_position = position;
 	_health = MAX_HEALTH;
 	_range = MAX_RANGE;
 	_speed = 1;
-	//_damage = weapon.GetDamage();
-	//_armor = armor.GetArmor();
+	_weapon = weapon;
+	_armor = armor;
 }
 
 Sniper::~Sniper()
@@ -18,16 +18,16 @@ Sniper::~Sniper()
 
 void Sniper::TakeDamage(int amount)
 {
-	if (_armor >= amount)
+	/*if (_armor >= amount)
 	{
 		_armor -= amount;
 		return;
 	}
 	else if (_armor != 0)
 	{
-		amount -= _armor;
+		amount -= _armor->GetArmor();
 		_armor = 0;
-	}
+	}*/
 
 	_health -= amount;
 	if (_health < 0)
@@ -36,7 +36,8 @@ void Sniper::TakeDamage(int amount)
 
 void Sniper::Attack(IAgent *target)
 {
-	target->TakeDamage(_damage);
+	int damage = _weapon->Shoot();
+	target->TakeDamage(damage);
 }
 
 void Sniper::Move(int direction)

@@ -2,6 +2,8 @@
 
 #include <string>
 #include <vector>
+#include "IWeapon.h"
+#include "IArmor.h"
 #include "Direction.h"
 #include "AgentStats.h"
 using namespace std;
@@ -14,12 +16,14 @@ protected:
 	int _range;
 	int _speed;
 	int _damage;
-	int _armor;
+	IWeapon* _weapon;
+	IArmor* _armor;
 	pair<int, int> _position;
 public:
 	string GetName();
 	int GetHealth();
-	int GetArmor();
+	IWeapon* GetWeapon();
+	IArmor* GetArmor();
 	pair<int, int> GetPosition();
 	int GetRange();
 	AgentStats GetStats();
