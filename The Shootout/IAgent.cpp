@@ -28,7 +28,12 @@ pair<int, int> IAgent::GetPosition()
 
 int IAgent::GetRange()
 {
-	return _range + _weapon->GetBonusRange();
+	return _range + _weapon->GetBonusRange() + _weapon->GetBonusRange();
+}
+
+int IAgent::GetSpeed()
+{
+	return _speed + _armor->GetBonusSpeed();
 }
 
 AgentStats IAgent::GetStats()

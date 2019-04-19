@@ -18,16 +18,7 @@ Sniper::~Sniper()
 
 void Sniper::TakeDamage(int amount)
 {
-	/*if (_armor >= amount)
-	{
-		_armor -= amount;
-		return;
-	}
-	else if (_armor != 0)
-	{
-		amount -= _armor->GetArmor();
-		_armor = 0;
-	}*/
+	amount = _armor->Defend(amount);
 
 	_health -= amount;
 	if (_health < 0)
@@ -42,25 +33,26 @@ void Sniper::Attack(IAgent *target)
 
 void Sniper::Move(int direction)
 {
+	int speed = GetSpeed();
 	if (direction & Direction::Up)
 	{
-		if (Map::IsInside(pair<int, int>(_position.first - _speed, _position.second)))
-			_position.first -= _speed;
+		if (Map::IsInside(pair<int, int>(_position.first - speed, _position.second)))
+			_position.first -= speed;
 	}
 	if (direction & Direction::Down)
 	{
-		if (Map::IsInside(pair<int, int>(_position.first + _speed, _position.second)))
-			_position.first += _speed;
+		if (Map::IsInside(pair<int, int>(_position.first + speed, _position.second)))
+			_position.first += speed;
 	}
 	if (direction & Direction::Left)
 	{
-		if (Map::IsInside(pair<int, int>(_position.first, _position.second - _speed)))
-			_position.second -= _speed;
+		if (Map::IsInside(pair<int, int>(_position.first, _position.second - speed)))
+			_position.second -= speed;
 	}
 	if (direction & Direction::Right)
 	{
-		if (Map::IsInside(pair<int, int>(_position.first, _position.second + _speed)))
-			_position.second += _speed;
+		if (Map::IsInside(pair<int, int>(_position.first, _position.second + speed)))
+			_position.second += speed;
 	}
 }
 

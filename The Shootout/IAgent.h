@@ -26,6 +26,7 @@ public:
 	IArmor* GetArmor();
 	pair<int, int> GetPosition();
 	int GetRange();
+	int GetSpeed();
 	AgentStats GetStats();
 
 	bool IsDead();

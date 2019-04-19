@@ -15,5 +15,5 @@ public:
 	int GetBonusHealth();
 	int GetBonusSpeed();
 	int GetBonusRange();
-	virtual int Defend() = 0;
+	virtual int Defend(int) = 0;
 };

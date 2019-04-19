@@ -11,7 +11,6 @@ private:
 public:
 	Sniper(string, IWeapon*, IArmor*, pair<int, int>);
 	~Sniper();
-
 	void TakeDamage(int);
 	void Attack(IAgent*);
 	void Move(int);

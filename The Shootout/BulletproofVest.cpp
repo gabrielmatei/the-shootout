@@ -13,7 +13,31 @@ BulletproofVest::~BulletproofVest()
 {
 }
 
-int BulletproofVest::Defend()
+int BulletproofVest::Defend(int damage)
 {
-	return 0;
+	if (_armor > damage)
+	{
+		_armor -= damage;
+		return 0;
+	}
+	else
+	{
+		damage -= _armor;
+		_armor = 0;
+	}
+	if (damage == 0)
+		return 0;
+
+	if (_bonusHealth > damage)
+	{
+		_bonusHealth -= damage;
+		return 0;
+	}
+	else
+	{
+		damage -= _bonusHealth;
+		_bonusHealth = 0;
+	}
+
+	return damage;
 }
