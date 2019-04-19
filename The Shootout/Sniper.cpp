@@ -33,7 +33,7 @@ void Sniper::Attack(IAgent *target)
 
 void Sniper::Move(int direction)
 {
-	int speed = GetSpeed();
+	int speed = GetTotalSpeed();
 	if (direction & Direction::Up)
 	{
 		if (Map::IsInside(pair<int, int>(_position.first - speed, _position.second)))
@@ -62,11 +62,11 @@ void Sniper::Play(vector<IAgent*> targets)
 		return;
 
 	IAgent* bestTarget = NULL;
-	int bestDistance = 999999;
+	int bestDistance = INT32_MAX;
 	for (auto target : targets)
 	{
 		int distance = Map::GetDistance(_position, target->GetPosition());
-		if (distance < bestDistance || (distance == bestDistance && target->GetHealth() < bestTarget->GetHealth()))
+		if (distance < bestDistance || (distance == bestDistance && target->GetTotalHealth() < bestTarget->GetTotalHealth()))
 		{
 			bestTarget = target;
 			bestDistance = distance;

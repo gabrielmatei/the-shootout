@@ -6,9 +6,34 @@ string IAgent::GetName()
 	return _name;
 }
 
-int IAgent::GetHealth()
+int IAgent::GetTotalDamage()
 {
-	return _health;
+	return _weapon->GetDamage();
+}
+
+int IAgent::GetTotalCriticalStrike()
+{
+	return _weapon->GetCriticalStrike();
+}
+
+int IAgent::GetTotalHealth()
+{
+	return _health + _armor->GetBonusHealth();
+}
+
+int IAgent::GetTotalArmor()
+{
+	return _armor->GetArmor();
+}
+
+int IAgent::GetTotalRange()
+{
+	return _range + _weapon->GetBonusRange() + _weapon->GetBonusRange();
+}
+
+int IAgent::GetTotalSpeed()
+{
+	return _speed + _armor->GetBonusSpeed();
 }
 
 IWeapon* IAgent::GetWeapon()
@@ -26,26 +51,17 @@ pair<int, int> IAgent::GetPosition()
 	return _position;
 }
 
-int IAgent::GetRange()
-{
-	return _range + _weapon->GetBonusRange() + _weapon->GetBonusRange();
-}
-
-int IAgent::GetSpeed()
-{
-	return _speed + _armor->GetBonusSpeed();
-}
-
 AgentStats IAgent::GetStats()
 {
-	return {
-		_name,
-		_damage,
-		_speed,
-		_range,
-		_health,
-		0
-	};
+	string name = GetName();
+	int damage = GetTotalDamage();
+	int critical = GetTotalCriticalStrike();
+	int health = GetTotalHealth();
+	int armor = GetTotalArmor();
+	int range = GetTotalRange();
+	int speed = GetTotalSpeed();
+
+	return { name, damage, critical, health, armor, range, speed };
 }
 
 bool IAgent::IsDead()

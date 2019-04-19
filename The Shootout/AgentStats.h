@@ -7,8 +7,9 @@ struct AgentStats
 {
 	string Name;
 	int Damage;
-	int Speed;
-	int Range;
+	int Critical;
 	int Health;
 	int Armor;
+	int Range;
+	int Speed;
 };

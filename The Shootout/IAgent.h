@@ -15,18 +15,20 @@ protected:
 	int _health;
 	int _range;
 	int _speed;
-	int _damage;
 	IWeapon* _weapon;
 	IArmor* _armor;
 	pair<int, int> _position;
 public:
 	string GetName();
-	int GetHealth();
+	int GetTotalDamage();
+	int GetTotalCriticalStrike();
+	int GetTotalHealth();
+	int GetTotalArmor();
+	int GetTotalRange();
+	int GetTotalSpeed();
 	IWeapon* GetWeapon();
 	IArmor* GetArmor();
 	pair<int, int> GetPosition();
-	int GetRange();
-	int GetSpeed();
 	AgentStats GetStats();
 
 	bool IsDead();

@@ -52,7 +52,7 @@ void Map::AddRange(pair<int, int> currentPosition, IAgent* agent)
 		if (_map[currentPosition.first][currentPosition.second] != LAND_TILE)
 			return;
 
-		if (GetDistance(currentPosition, agent->GetPosition()) > agent->GetRange())
+		if (GetDistance(currentPosition, agent->GetPosition()) > agent->GetTotalRange())
 			return;
 
 		if (_map[currentPosition.first][currentPosition.second] == LAND_TILE)
