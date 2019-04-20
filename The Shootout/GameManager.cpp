@@ -1,13 +1,11 @@
 #include "pch.h"
 #include "GameManager.h"
 
-GameManager::GameManager()
-{
-}
+bool GameManager::gameIsRunning = true;
 
-GameManager::~GameManager()
-{
-}
+GameManager::GameManager(){}
+
+GameManager::~GameManager() {}
 
 void GameManager::Init()
 {
@@ -15,13 +13,44 @@ void GameManager::Init()
 	_map.Init(&_agents);
 }
 
+void GameManager::ReadInputTask(std::atomic<bool>& programIsRunning)
+{
+	while (programIsRunning)
+	{
+		char input;
+		cin >> input;
+
+		switch (tolower(input))
+		{
+		case 'q':
+			break;
+		case 's':
+			gameIsRunning = true;
+			break;
+		case 'p':
+			gameIsRunning = false;
+			break;
+		}
+
+		cin.clear();
+		this_thread::sleep_for(milliseconds(500));
+	}
+}
+
 void GameManager::Loop()
 {
+	atomic<bool> programIsRunning{ true };
+	thread readInputTask(ReadInputTask, ref(programIsRunning));
+
 	while (true)
 	{
-		Update();
-		sleep_for(milliseconds(300));
+		if (gameIsRunning)
+			Update();
+		sleep_for(milliseconds(1000));
 	}
+
+	programIsRunning = false;
+	readInputTask.join();
 }
 
 void GameManager::Update()
@@ -47,28 +76,25 @@ void GameManager::Display()
 {
 	system("cls");
 
-	cout << "Round " << _round << "\n\n";
-
-	for (auto agent : _agents)
-	{
-		ShowAgentStats(agent->GetStats());
-	}
+	cout << "Round " << _round << "\n";
 
 	_map.Show();
 
-	cout << "\n\n";
+	for (auto agent : _agents)
+		ShowAgentStats(agent->GetStats());
 }
 
 void GameManager::ShowAgentStats(AgentStats stats)
 {
 	cout << left;
-	cout << "NAME: " << setw(8) << stats.Name << " - ";
-	cout << "H: " << setw(4) << stats.Health << " ";
-	cout << "A: " << setw(4) << stats.Armor << " ";
-	cout << "D: " << setw(3) << stats.Damage << " ";
-	cout << "S: " << setw(2) << stats.Speed << " ";
-	cout << "R: " << setw(2) << stats.Range << " ";
-	cout << "\n\n";
+	cout << "NAME: " << setw(8) << stats.Name << " ";
+	cout << "DAMAGE: " << setw(4) << stats.Damage << " ";
+	cout << "CRIT: " << setw(4) << stats.Critical << " ";
+	cout << "HEALTH: " << setw(3) << stats.Health << " ";
+	cout << "ARMOR: " << setw(2) << stats.Armor << " ";
+	cout << "RANGE: " << setw(2) << stats.Range << " ";
+	cout << "SPEED: " << setw(2) << stats.Speed << " ";
+	cout << "\n";
 }
 
 void GameManager::AddAgent(IAgent* agent)

@@ -1,13 +1,9 @@
 #include "pch.h"
 #include "Map.h"
 
-Map::Map() : _map(_height, vector<char>(_width))
-{
-}
+Map::Map() : _map(_height, vector<char>(_width)) {}
 
-Map::~Map()
-{
-}
+Map::~Map() {}
 
 void Map::Init(vector<IAgent*>* agents)
 {

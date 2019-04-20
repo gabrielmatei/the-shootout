@@ -62,7 +62,7 @@ void Sniper::Play(vector<IAgent*> targets)
 		return;
 
 	IAgent* bestTarget = NULL;
-	int bestDistance = INT32_MAX;
+	int bestDistance = numeric_limits<int>::max();
 	for (auto target : targets)
 	{
 		int distance = Map::GetDistance(_position, target->GetPosition());
