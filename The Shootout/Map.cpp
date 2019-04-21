@@ -11,6 +11,21 @@ void Map::Init(vector<IAgent*>* agents)
 	Clear();
 }
 
+int Map::GetWidth()
+{
+	return _width;
+}
+
+int Map::GetHeight()
+{
+	return _height;
+}
+
+vector<vector<char>> Map::GetMap()
+{
+	return _map;
+}
+
 void Map::Update()
 {
 	Clear();
@@ -33,9 +48,15 @@ void Map::Show()
 void Map::AddAgent(IAgent* agent)
 {
 	auto position = agent->GetPosition();
-	_map[position.first][position.second] = AGENT_TILE;
-
-	AddRange(position, agent);
+	if (agent->IsDead())
+	{
+		_map[position.first][position.second] = AGENT_DEAD_TILE;
+	}
+	else
+	{
+		_map[position.first][position.second] = AGENT_TILE;
+		AddRange(position, agent);
+	}
 }
 
 void Map::AddRange(pair<int, int> currentPosition, IAgent* agent)

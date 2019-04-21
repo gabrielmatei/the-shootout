@@ -15,23 +15,27 @@ private:
 
 	vector<vector<char>> _map;
 
-	const char LAND_TILE = (char)176;
-	const char AGENT_TILE = (char)178;
-	const char RANGE_TILE = (char)177;
+	const char LAND_TILE = (char)32;
+	const char AGENT_TILE = (char)219;
+	const char AGENT_DEAD_TILE = (char)88;
+	const char RANGE_TILE = (char)176;
 
 	vector<IAgent*>* _agents;
-
-	void Update();
 public:
 	Map();
 	~Map();
 
 	void Init(vector<IAgent*>*);
 
+	int GetWidth();
+	int GetHeight();
+	vector<vector<char>> GetMap();
+
 	void AddAgent(IAgent*);
 	void AddRange(pair<int, int>, IAgent*);
 
 	void Show();
+	void Update();
 	void Clear();
 
 	static int GetDistance(pair<int, int>, pair<int, int>);

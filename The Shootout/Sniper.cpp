@@ -65,6 +65,9 @@ void Sniper::Play(vector<IAgent*> targets)
 	int bestDistance = numeric_limits<int>::max();
 	for (auto target : targets)
 	{
+		if (target->IsDead())
+			continue;
+
 		int distance = Map::GetDistance(_position, target->GetPosition());
 		if (distance < bestDistance || (distance == bestDistance && target->GetTotalHealth() < bestTarget->GetTotalHealth()))
 		{
