@@ -69,30 +69,29 @@ void GameManager::Update()
 		_agents[i]->Play(targets);
 	}
 
-	//RemoveDeadAgents();
 	Display();
 }
 
-
-
-vector<string> logo{
-	"\t _______ __              _______ __                __               __   ",
-	"\t|       |  |--.-----.   |   _   |  |--.-----.-----|  |_.-----.--.--|  |_ ",
-	"\t|.|   | |     |  -__|   |   1___|     |  _  |  _  |   _|  _  |  |  |   _|",
-	"\t`-|.  |-|__|__|_____|   |____   |__|__|_____|_____|____|_____|_____|____|",
-	"\t  |:  |                 |:  1   |                                        ",
-	"\t  |::.|                 |::.. . |                                        ",
-	"\t  `---'                 `-------'                                        ",
-	"",
-	"",
-	""
-};
-
-
-
-
 void GameManager::Display()
 {
+	vector<string> logo{
+		" ______ __              _______ __                __               __   ",
+		"|       |  |--.-----.   |   _   |  |--.-----.-----|  |_.-----.--.--|  |_ ",
+		"|.|   | |     |  -__|   |   1___|     |  _  |  _  |   _|  _  |  |  |   _|",
+		"`-|.  |-|__|__|_____|   |____   |__|__|_____|_____|____|_____|_____|____|",
+		"  |:  |                 |:  1   |                                        ",
+		"  |::.|                 |::.. . |                                        ",
+		"  `---'                 `-------'                                        ",
+		"",
+		"",
+		"\tInstructions",
+		"S. Start",
+		"P. Pause",
+		"D. Game details",
+		"Q. Exit",
+		""
+	};
+
 	system("cls");
 
 	_map.Update();
@@ -103,7 +102,7 @@ void GameManager::Display()
 
 	vector<string> right = logo;
 
-	right.push_back("Round " + to_string(_round));
+	right.push_back("ROUND " + to_string(_round));
 	right.push_back("");
 	right.push_back("");
 	for (auto a : _agents) {
@@ -124,7 +123,7 @@ void GameManager::Display()
 		right.push_back(stream.str());
 		stream.str("");
 
-		right.push_back("");
+		right.push_back("----------------------------------------");
 	}
 
 	for (int i = 0; i < height || i < right.size(); i++)

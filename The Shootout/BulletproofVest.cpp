@@ -39,5 +39,8 @@ int BulletproofVest::Defend(int damage)
 		_bonusHealth = 0;
 	}
 
+	if (_armor == 0 && _bonusHealth == 0)
+		_bonusSpeed = _bonusRange = 0;
+
 	return damage;
 }
