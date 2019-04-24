@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Sniper.h"
+#include "GameManager.h"
 
 Sniper::Sniper(string name, IWeapon *weapon, IArmor *armor, pair<int, int> position)
 {
@@ -21,8 +22,11 @@ void Sniper::TakeDamage(int amount)
 	amount = _armor->Defend(amount);
 
 	_health -= amount;
-	if (_health < 0)
+	if (_health <= 0)
+	{
 		_health = 0;
+		GameManager::AddLog(GetName() + " is dead");
+	}
 }
 
 void Sniper::Attack(IAgent *target)
@@ -80,10 +84,14 @@ void Sniper::Play(vector<IAgent*> targets)
 	{
 		if (bestDistance <= _range)
 		{
+			GameManager::AddLog(GetName() + " attacked " + bestTarget->GetName());
+			
 			Attack(bestTarget);
 		}
 		else
 		{
+			GameManager::AddLog(GetName() + " headed for " + bestTarget->GetName());
+			
 			int direction = Map::GetDirection(_position, bestTarget->GetPosition());
 			Move(direction);
 		}

@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "GameManager.h"
-#include <sstream>
 
-bool GameManager::gameIsRunning = true;
+bool GameManager::_gameInProgress = true;
+bool GameManager::_gameIsRunning = true;
+bool GameManager::_canShowLogs = false;
+vector<string> GameManager::_logs;
 
 GameManager::GameManager() {}
 
@@ -26,10 +28,14 @@ void GameManager::ReadInputTask(std::atomic<bool>& programIsRunning)
 		case 'q':
 			break;
 		case 's':
-			gameIsRunning = true;
+			_gameIsRunning = true;
 			break;
 		case 'p':
-			gameIsRunning = false;
+			_gameIsRunning = false;
+			break;
+		case 'd':
+			_canShowLogs = true;
+			_gameIsRunning = false;
 			break;
 		}
 
@@ -38,17 +44,79 @@ void GameManager::ReadInputTask(std::atomic<bool>& programIsRunning)
 	}
 }
 
+void GameManager::Start()
+{
+	cout << "\t\t ______ __              _______ __                __               __   \n";
+	cout << "\t\t|       |  |--.-----.   |   _   |  |--.-----.-----|  |_.-----.--.--|  |_ \n";
+	cout << "\t\t|.|   | |     |  -__|   |   1___|     |  _  |  _  |   _|  _  |  |  |   _|\n";
+	cout << "\t\t`-|.  |-|__|__|_____|   |____   |__|__|_____|_____|____|_____|_____|____|\n";
+	cout << "\t\t  |:  |                 |:  1   |                                        \n";
+	cout << "\t\t  |::.|                 |::.. . |                                        \n";
+	cout << "\t\t  `---'                 `-------'                                        \n\n\n";
+
+	int numberOfAgents;
+	cout << "Number of snipers: "; cin >> numberOfAgents;
+
+	for (int i = 0; i < numberOfAgents; i++)
+	{
+		system("cls");
+
+		string name;
+		cout << "Enter name: ";
+		cin >> name;
+
+		int weapon, armor;
+		cout << "Choose weapon: 1.M21Rifle   2.M4Carbine   3.M9Pistol: ";
+		cin >> weapon;
+		cout << "Choose armor: 1.BallisticShield   2.Helmet   3.BulletproofVest: ";
+		cin >> armor;
+
+		IWeapon* weaponPointer = NULL;
+		IArmor* armorPointer = NULL;
+
+		switch (weapon)
+		{
+		case 1:
+			weaponPointer = new M21Rifle;
+			break;
+		case 2:
+			weaponPointer = new M4Carbine;
+			break;
+		case 3:
+			weaponPointer = new M9Pistol;
+			break;
+		}
+
+		switch (armor)
+		{
+		case 1:
+			armorPointer = new BallisticShield;
+			break;
+		case 2:
+			armorPointer = new Helmet;
+			break;
+		case 3:
+			armorPointer = new BulletproofVest;
+			break;
+		}
+
+		AddAgent(new Sniper(name, weaponPointer, armorPointer, { rand() % 40, rand() % 100 }));
+	}
+}
+
 void GameManager::Loop()
 {
 	atomic<bool> programIsRunning{ true };
 	thread readInputTask(ReadInputTask, ref(programIsRunning));
 
-	while (true)
+	while (_gameInProgress)
 	{
-		if (gameIsRunning)
+		if (_gameIsRunning)
 			Update();
 		sleep_for(milliseconds(1000));
 	}
+
+	ShowLogs();
 
 	programIsRunning = false;
 	readInputTask.join();
@@ -67,6 +135,16 @@ void GameManager::Update()
 			targets.push_back(_agents[j]);
 
 		_agents[i]->Play(targets);
+	}
+
+	int count = 0;
+	for (auto agent : _agents)
+		if (!agent->IsDead())
+			count++;
+	if (count <= 1)
+	{
+		_gameInProgress = false;
+		_gameIsRunning = false;
 	}
 
 	Display();
@@ -142,9 +220,11 @@ void GameManager::Display()
 		cout << "\n";
 	}
 
-	return;
-	for (auto agent : _agents)
-		ShowAgentStats(agent->GetStats());
+	if (_canShowLogs)
+	{
+		_canShowLogs = false;
+		ShowLogs();
+	}
 }
 
 void GameManager::ShowAgentStats(AgentStats stats)
@@ -157,7 +237,6 @@ void GameManager::ShowAgentStats(AgentStats stats)
 	cout << "ARMOR: " << setw(2) << stats.Armor << " ";
 	cout << "RANGE: " << setw(2) << stats.Range << " ";
 	cout << "SPEED: " << setw(2) << stats.Speed << " ";
-	//cout << "\n";
 }
 
 void GameManager::AddAgent(IAgent* agent)
@@ -180,4 +259,16 @@ void GameManager::RemoveDeadAgents()
 			[](IAgent* i) { return i->IsDead(); }),
 		_agents.end()
 	);
+}
+
+void GameManager::AddLog(string log)
+{
+	GameManager::_logs.push_back(log);
+}
+
+void GameManager::ShowLogs()
+{
+	cout << "\tGAME DETAILS:\n";
+	for (auto log : GameManager::_logs)
+		cout << log << "\n";
 }

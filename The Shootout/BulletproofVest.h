@@ -8,7 +8,7 @@ private:
 	const int MAX_ARMOR = 44;
 	const int MAX_HEALTH = 32;
 	const int MAX_SPEED = 1;
-	const int MAX_RANGE = 2;
+	const int MAX_RANGE = 1;
 public:
 	BulletproofVest();
 	~BulletproofVest();

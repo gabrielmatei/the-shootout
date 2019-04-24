@@ -1,18 +1,18 @@
 #include "pch.h"
-#include "M21Rifle.h"
+#include "M4Carbine.h"
 
-M21Rifle::M21Rifle()
+M4Carbine::M4Carbine()
 {
 	_damage = MAX_DAMAGE;
 	_criticalStrike = MAX_CRITICAL;
 	_bonusRange = MAX_RANGE;
 }
 
-M21Rifle::~M21Rifle()
+M4Carbine::~M4Carbine()
 {
 }
 
-int M21Rifle::Shoot()
+int M4Carbine::Shoot()
 {
 	int crit = 0;
 	if (rand() % 100 + 1 <= CHANCES_CRITICAL)

@@ -66,6 +66,18 @@
     <ClInclude Include="M21Rifle.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="M4Carbine.h">
+      <Filter>Header Files\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="M9Pistol.h">
+      <Filter>Header Files\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Helmet.h">
+      <Filter>Header Files\Armors</Filter>
+    </ClInclude>
+    <ClInclude Include="BallisticShield.h">
+      <Filter>Header Files\Armors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -97,6 +109,18 @@
     </ClCompile>
     <ClCompile Include="M21Rifle.cpp">
       <Filter>Source Files\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="M4Carabine.cpp">
+      <Filter>Source Files\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="M9Pistol.cpp">
+      <Filter>Source Files\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Helmet.cpp">
+      <Filter>Source Files\Armors</Filter>
+    </ClCompile>
+    <ClCompile Include="BallisticShield.cpp">
+      <Filter>Source Files\Armors</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

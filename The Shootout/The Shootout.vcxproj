@@ -152,24 +152,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AgentStats.h" />
+    <ClInclude Include="BallisticShield.h" />
     <ClInclude Include="BulletproofVest.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Helmet.h" />
     <ClInclude Include="IAgent.h" />
     <ClInclude Include="IArmor.h" />
     <ClInclude Include="IWeapon.h" />
     <ClInclude Include="M21Rifle.h" />
+    <ClInclude Include="M4Carbine.h" />
+    <ClInclude Include="M9Pistol.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sniper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BallisticShield.cpp" />
     <ClCompile Include="BulletproofVest.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Helmet.cpp" />
     <ClCompile Include="IAgent.cpp" />
     <ClCompile Include="IArmor.cpp" />
     <ClCompile Include="IWeapon.cpp" />
     <ClCompile Include="M21Rifle.cpp" />
+    <ClCompile Include="M4Carabine.cpp" />
+    <ClCompile Include="M9Pistol.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

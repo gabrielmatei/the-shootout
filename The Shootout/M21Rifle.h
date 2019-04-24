@@ -3,7 +3,7 @@
 #include "IWeapon.h"
 
 class M21Rifle : virtual public IWeapon
-{
+{	
 private:
 	const int MAX_DAMAGE = 40;
 	const int MAX_CRITICAL = 25;
