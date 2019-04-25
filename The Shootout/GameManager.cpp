@@ -8,7 +8,11 @@ vector<string> GameManager::_logs;
 
 GameManager::GameManager() {}
 
-GameManager::~GameManager() {}
+GameManager::~GameManager()
+{
+	for (auto agent : _agents)
+		delete agent;
+}
 
 void GameManager::Init()
 {
@@ -85,6 +89,9 @@ void GameManager::Start()
 		case 3:
 			weaponPointer = new M9Pistol;
 			break;
+		default:
+			weaponPointer = new M9Pistol;
+			break;
 		}
 
 		switch (armor)
@@ -97,6 +104,9 @@ void GameManager::Start()
 			break;
 		case 3:
 			armorPointer = new BulletproofVest;
+			break;
+		default:
+			armorPointer = new Helmet;
 			break;
 		}
 
@@ -113,7 +123,7 @@ void GameManager::Loop()
 	{
 		if (_gameIsRunning)
 			Update();
-		sleep_for(milliseconds(1000));
+		sleep_for(seconds(1));
 	}
 
 	ShowLogs();

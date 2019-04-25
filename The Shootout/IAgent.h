@@ -19,6 +19,7 @@ protected:
 	IArmor* _armor;
 	pair<int, int> _position;
 public:
+	~IAgent();
 	string GetName();
 	int GetTotalDamage();
 	int GetTotalCriticalStrike();
@@ -30,9 +31,7 @@ public:
 	IArmor* GetArmor();
 	pair<int, int> GetPosition();
 	AgentStats GetStats();
-
 	bool IsDead();
-
 	virtual void TakeDamage(int) = 0;
 	virtual void Attack(IAgent*) = 0;
 	virtual void Move(int) = 0;

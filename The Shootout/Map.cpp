@@ -61,25 +61,15 @@ void Map::AddAgent(IAgent* agent)
 
 void Map::AddRange(pair<int, int> currentPosition, IAgent* agent)
 {
-	if (!IsInside(currentPosition))
-		return;
-
-	if (currentPosition != agent->GetPosition())
-	{
-		if (_map[currentPosition.first][currentPosition.second] != LAND_TILE)
-			return;
-
-		if (GetDistance(currentPosition, agent->GetPosition()) > agent->GetTotalRange())
-			return;
-
-		if (_map[currentPosition.first][currentPosition.second] == LAND_TILE)
-			_map[currentPosition.first][currentPosition.second] = RANGE_TILE;
-	}
-
-	AddRange(pair<int, int>(currentPosition.first + 1, currentPosition.second), agent);
-	AddRange(pair<int, int>(currentPosition.first - 1, currentPosition.second), agent);
-	AddRange(pair<int, int>(currentPosition.first, currentPosition.second + 1), agent);
-	AddRange(pair<int, int>(currentPosition.first, currentPosition.second - 1), agent);
+	for (int i = 0; i < _height; i++)
+		for (int j = 0; j < _width; j++)
+		{
+			if (GetDistance({ i, j }, agent->GetPosition()) > agent->GetTotalRange())
+				continue;
+			if (_map[i][j] != LAND_TILE)
+				continue;
+			_map[i][j] = RANGE_TILE;
+		}
 }
 
 void Map::Clear()

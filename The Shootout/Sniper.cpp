@@ -13,9 +13,7 @@ Sniper::Sniper(string name, IWeapon *weapon, IArmor *armor, pair<int, int> posit
 	_armor = armor;
 }
 
-Sniper::~Sniper()
-{
-}
+Sniper::~Sniper() {}
 
 void Sniper::TakeDamage(int amount)
 {

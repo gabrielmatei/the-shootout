@@ -1,6 +1,12 @@
 #include "pch.h"
 #include "IAgent.h"
 
+IAgent::~IAgent()
+{
+	delete _weapon;
+	delete _armor;
+}
+
 string IAgent::GetName()
 {
 	return _name;
